@@ -46,38 +46,37 @@
 				<form action="" method="POST">
 					<div class="form-group">
 						<label for="">Name</label>
-						<input name="name" class="form-control" type="text"><br>
+						<input name="name" class="form-control" type="text" value = "<?php old_entry('name') ?>"><br>
 						<?php 
-							global $name_error;
-							if(isset($name_error)){
-								echo $name_error;
+							if(isset($error['name'])){
+								echo $error['name'];
 							}
 						?>
 					</div>
 					<div class="form-group">
 						<label for="">Email</label>
-						<input name="email" class="form-control" type="text"><br>
+						<input name="email" class="form-control" type="text" value = "<?php old_entry('email') ?>"><br>
 						<?php 
-							if(isset($email_error)){
-								echo $email_error;
+							if(isset($error['email'])){
+								echo $error['email'];
 							}
 						?>
 					</div>
 					<div class="form-group">
 						<label for="">Mobile</label>
-						<input name="mobile" class="form-control" type="text"><br>
+						<input name="mobile" class="form-control" type="text" value = "<?php old_entry('mobile') ?>"><br>
 						<?php 
-							if(isset($mobile_error)){
-								echo $mobile_error;
+							if(isset($error['mobile'])){
+								echo $error['mobile'];
 							}
 						?>
 					</div>
 					<div class="form-group">
 						<label for="">Age</label>
-						<input name="age" class="form-control" type="text" placeholder = "20 to 40 Years old are accepted"><br>
+						<input name="age" class="form-control" type="text" placeholder = "20 to 40 Years old are accepted" value = "<?php old_entry('age') ?>"><br>
 						<?php 
-							if(isset($age_error)){
-								echo $age_error;
+							if(isset($error['age'])){
+								echo $error['age'];
 							}
 						?>
 					</div>
@@ -85,7 +84,7 @@
 						<input class="btn btn-primary" name="submit" type="submit" value="Register">
 					</div>
 					<br>	
-					
+
 					<?php 
 						if(isset($success)){
 							echo $success;
