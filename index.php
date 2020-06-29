@@ -1,3 +1,5 @@
+<?php include_once "functions.php"?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,21 +20,24 @@
 			$age = $_POST['age'];
 
 			if(empty($name)){
-				$name_error = '<p class = "alert alert-danger"> Name cant be empty</p>';
-			}elseif(empty($email)){
-				$email_error = '<p class = "alert alert-danger"> Email cant be empty</p>';
-			}elseif(empty($mobile)){
-				$mobile_error = '<p class = "alert alert-danger"> Mobile cant be empty</p>';
-			}elseif(empty($age)){
-				$age_error = '<p class = "alert alert-danger"> age cant be empty</p>';
-			}else{
-				$success = '<p class = "alert alert-success"> Registration Successfull</p>';
+				$error['name'] = '<p class = "alert alert-danger"> Name cant be empty</p>';
 			}
-
-		}
-	
+			if(empty($email)){
+				$error['email'] = '<p class = "alert alert-danger"> Email cant be empty</p>';
+			}
+			if(empty($mobile)){
+				 $error['mobile'] = '<p class = "alert alert-danger"> Mobile cant be empty</p>';
+			}
+			if(empty($age)){
+				$error['age'] = '<p class = "alert alert-danger"> age cant be empty</p>';
+			}elseif(age_check($age)==false){
+				$error['age'] = '<p class = "alert alert-danger"> Your Age is not valid for this app</p>';
+			}	
+			if(empty($error)){
+				$success = '<p class = "alert alert-sucess"> Registration Successfull</p>';
+			}
+		}	
 	?>
-	
 
 	<div class="wrap shadow">
 		<div class="card">
@@ -43,6 +48,7 @@
 						<label for="">Name</label>
 						<input name="name" class="form-control" type="text"><br>
 						<?php 
+							global $name_error;
 							if(isset($name_error)){
 								echo $name_error;
 							}
@@ -52,8 +58,8 @@
 						<label for="">Email</label>
 						<input name="email" class="form-control" type="text"><br>
 						<?php 
-							if(isset($name_error)){
-								echo $name_error;
+							if(isset($email_error)){
+								echo $email_error;
 							}
 						?>
 					</div>
@@ -61,17 +67,17 @@
 						<label for="">Mobile</label>
 						<input name="mobile" class="form-control" type="text"><br>
 						<?php 
-							if(isset($name_error)){
-								echo $name_error;
+							if(isset($mobile_error)){
+								echo $mobile_error;
 							}
 						?>
 					</div>
 					<div class="form-group">
 						<label for="">Age</label>
-						<input name="age" class="form-control" type="text"><br>
+						<input name="age" class="form-control" type="text" placeholder = "20 to 40 Years old are accepted"><br>
 						<?php 
-							if(isset($name_error)){
-								echo $name_error;
+							if(isset($age_error)){
+								echo $age_error;
 							}
 						?>
 					</div>
@@ -79,7 +85,7 @@
 						<input class="btn btn-primary" name="submit" type="submit" value="Register">
 					</div>
 					<br>	
-
+					
 					<?php 
 						if(isset($success)){
 							echo $success;
