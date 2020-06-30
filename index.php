@@ -19,22 +19,49 @@
 			$mobile = $_POST['mobile'];
 			$age = $_POST['age'];
 
+			/**
+			 * Name field empty check
+			 */
+
 			if(empty($name)){
 				$error['name'] = '<p class = "alert alert-danger"> Name cant be empty</p>';
 			}
+
+			/**
+			 * Email Validation with empty check
+			 */
+
 			if(empty($email)){
 				$error['email'] = '<p class = "alert alert-danger"> Email cant be empty</p>';
+			}elseif(email_valid($email)==false){
+				$error['email'] = '<p class = "alert alert-danger"> Please enter correct email</p>';
+			}elseif(restrict_mails($email)== true ){
+				$error['email'] = '<p class = "alert alert-danger"> Your Email is not accepted</p>';
 			}
+			/**
+			 * Mobile field Empty check
+			 */
+
 			if(empty($mobile)){
 				 $error['mobile'] = '<p class = "alert alert-danger"> Mobile cant be empty</p>';
 			}
+
+			/**
+			 * Age Validation with empty check
+			 */
+
 			if(empty($age)){
 				$error['age'] = '<p class = "alert alert-danger"> age cant be empty</p>';
 			}elseif(age_check($age)==false){
 				$error['age'] = '<p class = "alert alert-danger"> Your Age is not valid for this app</p>';
-			}	
+			}
+			
+			/**
+			 * Data Send
+			 */
+
 			if(empty($error)){
-				$success = '<p class = "alert alert-sucess"> Registration Successfull</p>';
+				$success = '<p class = "alert alert-success"> Registration Successfull</p>';
 			}
 		}	
 	?>
